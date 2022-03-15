@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
             case 'f':
                 printf("Fields: %s\n", optarg);
                 break;
-            case 's':
+                case 's':
                 printf("Char: %s\n", optarg);
                 break;
             case ':' :
@@ -26,8 +26,18 @@ int main(int argc, char *argv[])
         }
     }
 
-    for(; optind < argc; optind++)
-        printf("argument: %s\n", argv[optind]);
+    int temp = 1;
+    for(; optind < argc; optind++){
+            if ( temp == 1  ) {
+                printf("Input File: %s\n", argv[optind]);
+            } else if ( temp == 2 ) {
+                   printf("Output File: %s\n", argv[optind]);
+            } else {
+                    printf("Argument: %s\n", argv[optind]);
+            }
+            temp++;
+
+    }
     return 0;
 
 }
