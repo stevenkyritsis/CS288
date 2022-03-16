@@ -26,16 +26,16 @@ int main(int argc, char *argv[])
         }
     }
 
-    int temp = 1;
+    int file_type = 1;
     for(; optind < argc; optind++){
-            if ( temp == 1  ) {
+            if ( file_type == 1  ) {
                 printf("Input File: %s\n", argv[optind]);
-            } else if ( temp == 2 ) {
+            } else if ( file_type == 2 ) {
                    printf("Output File: %s\n", argv[optind]);
             } else {
                     printf("Argument: %s\n", argv[optind]);
             }
-            temp++;
+            file_type++;
 
     }
     return 0;
