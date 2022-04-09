@@ -2,6 +2,7 @@
 
 #include<stdlib.h>
 #include<stdio.h>
+#include<memory.h>
 
 struct node{
     int value;
@@ -9,27 +10,48 @@ struct node{
 };
 
 int main(){
-    struct node *head, *tail, *p;
-    struct node input;
-
-    p=(struct node *)malloc(sizeof(struct node));
-
-    while(true){
-        int i = 1;
-        printf("Input data for node %d", i);
-        scanf("%d", input); 
+    struct node *head, *p, *tail;
+    tail=malloc(sizeof(struct node));
+    int i = 1, input;
+    while(i <= 3){
+        p=malloc(sizeof(struct node));
+        head=malloc(sizeof(struct node));
+        printf("Input data for node %d: ", i);
+        p->value = scanf("%d", &input);
+        if (i == 1) {
+            tail->next = NULL;
+            tail->value = p->value;
+                 
+            head->value = tail->value;
+            head->next = tail->next;
+        };
+        //Assigning the head to the value initialized in p
+        if (i > 1){
+            head->value = p->value;
+            head->next = p; 
+            p->next = tail;
+        }
         
-        p->value = input;
-        if (i == 1){
-            head->value = input;
-            head->next = p->next;
-        }
-        if (){
-            
-        }
-       
+        ++i;
     };
-    
+
+    printf("The result is:\n");
+    p->value = head->value;
+    printf("This is 1: %d \n", p->value);
+    p=head->next;
+    printf("This is 2: %d", p->value);
+    p=p->next;
+    printf("This is 3: %d", p->value);
 
     return 0;
 }
+
+void show_list(struct node *head) {
+    struct node *p=head;
+    if(head==NULL) return;
+    while(p!=NULL){
+            printf("->%d", p->value);
+            p=p->next;
+    }
+    printf("\n");
+} 
