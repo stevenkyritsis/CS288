@@ -2,15 +2,18 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-//#include<memory.h>
+#include<memory.h>
 
 int main(int argc, char *argv[]){
 
-    signed int input;
+    int input, flag;
 
-    while(scanf("%d", &input) != EOF){
+    while(flag != EOF){
         printf("Enter an integer: ");
+        flag = scanf("%d", &input);
     }
+
+    printf("%d \n", input);
 
     return 0;
 }
