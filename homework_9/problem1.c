@@ -13,7 +13,7 @@ void writeLL(struct node *head, FILE *wfptr){ //Prints contents of link list
     struct node *p = head;
     while(p != NULL){
         printf("Data entered = %d\n", p->value);
-        //fprintf(wfptr,"%d",p->value);
+        fprintf(wfptr,"%d\n",p->value);
         p = p->next;
     }
 }
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
         tail = p;
         count++;
     }
-
+    p = head;
     writeLL(p,fptr);
     fclose(fptr);
 
