@@ -10,14 +10,16 @@ struct node{
 };
 
 int main(){
-    struct node *head, *p, *tail;
-    tail=malloc(sizeof(struct node));
+
+    struct node *head=NULL, *p, *tail=NULL;
+
     int i = 1, input;
     while(i <= 3){
         p=malloc(sizeof(struct node));
-        head=malloc(sizeof(struct node));
+
         printf("Input data for node %d: ", i);
         p->value = scanf("%d", &input);
+        if (scanf())
         if (i == 1) {
             tail->next = NULL;
             tail->value = p->value;
