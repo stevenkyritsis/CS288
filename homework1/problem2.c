@@ -22,7 +22,7 @@ int main(){
     for(int j = 0; j < 4; j++){
         start = clock();
         int count = 0;
-        while(count < 1000){ //keeping array in cache
+        while(count < 10000000){ //keeping array in cache
             //printf("%d \n",array[(count%SIZE)]); used for testing purposes
             count++;
         }
