@@ -10,7 +10,7 @@
 int main(){
 
     clock_t start, end;
-    const int SIZE = 20;
+    const int SIZE = 20000;
     int *array=(int*)malloc(SIZE * sizeof(int));
     double latency_access_time;
 
@@ -22,8 +22,9 @@ int main(){
     for(int j = 0; j < 4; j++){
         start = clock();
         int count = 0;
-        while(count < 10000000){ //keeping array in cache
+        while(count < 10000){ //keeping array in cache
             //printf("%d \n",array[(count%SIZE)]); used for testing purposes
+            array[(count%SIZE)];
             count++;
         }
         end = clock();
