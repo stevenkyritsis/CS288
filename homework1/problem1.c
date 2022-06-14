@@ -11,7 +11,8 @@ int main(){
 
     clock_t start, end;
     const int SIZE = 20;
-    int *array=(int*)malloc(SIZE * sizeof(int));
+    //int *array=(int*)malloc(SIZE * sizeof(int));
+    int array[SIZE];
     double latency_access_time;
 
     //initialize the array
@@ -29,7 +30,7 @@ int main(){
         end = clock();
 
         latency_access_time = ((double) (end - start)) / CLOCKS_PER_SEC;
-        printf("The access time for CPU cache for loop %d: %f s\n",j,latency_access_time);
+        printf("The access time for CPU cache for loop %d: %fs\n",j,latency_access_time);
     }
     
     return 0;
