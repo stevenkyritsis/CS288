@@ -20,17 +20,22 @@ int main(){
         array[i] = i+1;
     }
 
+    for (int i=0; i < 100; i++){
+        array[(i%SIZE)];
+    }
+
     for(int j = 0; j < 4; j++){
         start = clock();
         int count = 0;
-        while(count < 1000){ //keeping array in cache
+        while(count < 100){ //keeping array in cache
             //printf("%d \n",array[(count%SIZE)]); used for testing purposes
+            array[(count%SIZE)];
             count++;
         }
         end = clock();
 
         latency_access_time = ((double) (end - start)) / CLOCKS_PER_SEC;
-        printf("The access time for CPU cache for loop %d: %fs\n",j,latency_access_time);
+        printf("The access time for CPU cache for loop %d: %.10fs\n",j,(latency_access_time/count));
     }
     
     return 0;
