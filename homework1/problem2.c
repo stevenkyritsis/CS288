@@ -35,7 +35,7 @@ int main(){
         end = clock();
 
         latency_access_time = ((double) (end - start)) / CLOCKS_PER_SEC;
-        printf("The access time for CPU cache for loop %d: %.10fs\n",j,(latency_access_time/CACHE_SIZE));
+        printf("The access time for CPU cache for loop %d: %.10fs\n",j,(latency_access_time));
     }
     
     return 0;
