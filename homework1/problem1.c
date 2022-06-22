@@ -9,7 +9,7 @@
 //Problem 1: CPU Cache Access Delay
 int main(){
 
-    clock_t start, end;
+    clock_t start, end; //time in seconds
     const int SIZE = 20;
     //int *array=(int*)malloc(SIZE * sizeof(int));
     int array[SIZE];
