@@ -14,7 +14,7 @@ int main(){
     const int CACHE_SIZE = 47104;
     double latency_access_time;
 
-/* ########## WRITING TO MY FILE ###############
+/*
     file_read = fopen("/home/sak76/homework/homework_1/test.txt", "w");
     fprintf(file_read,"Hello World!\n");
     
@@ -24,7 +24,7 @@ int main(){
     fclose(file_read);
 */
 
-    int *arr=(int*)malloc(CACHE_SIZE * sizeof(int));
+   int *arr=(int*)malloc(CACHE_SIZE * sizeof(int));
     for (int i=0; i < CACHE_SIZE; i++){
         arr[(i)];
     }
