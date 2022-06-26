@@ -22,9 +22,9 @@ int main(){
 
     for(int j = 0; j < 4; j++){
         start = clock();
+        random = rand();
         array[(random%SIZE)];
         end = clock();
-
         latency_access_time = ((double) (end - start)) / CLOCKS_PER_SEC;
         printf("The access time for RAM for loop %d: %.10fs\n",j,(latency_access_time));
     }

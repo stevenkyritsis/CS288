@@ -22,6 +22,7 @@ int main(){
 
     for(int j = 0; j < 4; j++){
         start = clock();
+        random = rand();
         array[(random%SIZE)];
         end = clock();
 
