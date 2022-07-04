@@ -4,11 +4,10 @@ for temp1 in {A..Z}
 do
     for temp2 in {A..Z}
     do
-        temp=$temp1$temp2
-        wget https://en.wikipedia.org/wiki/$temp -O /home/sak76/homework/homework_2/html/${temp}.html
-        lynx -dump –nolist /home/sak76/homework/homework_2/html/${temp}.html > /home/sak76/homework/homework_2/txt/${temp}.txt
-        #grep -o "[A-Za-z]*" /home/sak76/homework/homework_2/txt/${temp}.txt | sort | uniq -c | sort -nr > /home/sak76/homework/homework_2/ftxt/${temp}.txt
+        temp="$temp1$temp2"
+        wget https://en.wikipedia.org/wiki/$temp -O ${temp}.html
+        lynx -dump –nolist ${temp}.html > ${temp}.txt
+        grep -o -E "[a-zA-Z]*" ${temp}.txt | tr '[:upper:]' '[:lower:]' | cut -f1 > ftxt.txt
     done
 done
-grep -Riho "[A-Za-z]*" /home/sak76/homework/homework_2/txt/*.txt > /home/sak76/homework/homework_2/ftxt/ftxt.txt
-sort | uniq -c | sort -nr /home/sak76/homework/homework_2/ftxt/ftxt.txt > /home/sak76/homework/homework_2/ftxt/ftxt.txt
+sort ftxt.txt | uniq -c | sort -nr | head -15
