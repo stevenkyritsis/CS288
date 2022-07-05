@@ -29,4 +29,9 @@ mydict = {}
 for word in unique:
     mydict[word] = words.count(word)
 
-print(mydict)
+count = 0
+for k in sorted(mydict, key=mydict.get, reverse=True):
+  print(k, mydict[k])
+  count+=1
+  if count==15:
+    break
