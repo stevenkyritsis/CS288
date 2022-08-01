@@ -6,6 +6,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <pthread.h>
+#include <errno.h>
+int Nthreads = 2;
 
 //global float variable for the mapped file
 float *map;
@@ -15,7 +17,11 @@ void * start_routine(void *id){  /* main func of a thread */
     int *myid = (int *)id;
     /* private data defined in the function if there are any*/
 
-    
+    int i=0;
+    while(map[i] != 0){
+        printf("%f\n %d\n",map[i], *myid);
+        i++;
+    }
 
     //printf("Greatings from thread %d\n",*myid); 
     pthread_exit(NULL); 
@@ -45,7 +51,7 @@ int main(int argc, char *argv[]){
     }
 
     FILESIZE = lseek(file,0,SEEK_END);
-    NUMINTS = FILESIZE / 4;
+    NUMOBJ = FILESIZE / 4;
     map = mmap(0, FILESIZE, PROT_READ|PROT_WRITE,MAP_SHARED,file,0);
 
     if(map == MAP_FAILED){
@@ -53,7 +59,20 @@ int main(int argc, char *argv[]){
         perror("Error mapping the file");
         exit(0);
     }
-    
+
+
+    pthread_t thread[10]; int ret, index[10];
+    for(int i = 0; i < 10; i++){
+        ret = pthread_create(thread+i,NULL,start_routine,&(index[10]));
+        if (ret!=0) { errno = ret; perror("pthread_create"); return -1;}
+    }
+    for (int i=0;i<10;i++) pthread_join(thread[i], NULL);
+    /*
+    int i=0;
+    while(map[i] != 0){
+        printf("%f",map[i]);
+        i++;
+    }*/
 
     return 0;
 }
