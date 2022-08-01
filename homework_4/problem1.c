@@ -7,6 +7,9 @@
 #include <fcntl.h>
 #include <pthread.h>
 
+//global float variable for the mapped file
+float *map;
+
 /* Global variables and data in heap are shared by all threads */
 void * start_routine(void *id){  /* main func of a thread */
     int *myid = (int *)id;
@@ -21,10 +24,8 @@ void * start_routine(void *id){  /* main func of a thread */
 
 int main(int argc, char *argv[]){
     
-    int NUMINTS, FILESIZE, file;
+    int NUMOBJ, FILESIZE, file;
     char *FILEPATH;
-    float *map;
-    int j;
 
     //Checking for 2 arguments
     if (argc < 2){
