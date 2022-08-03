@@ -7,7 +7,7 @@
 #include <fcntl.h>
 #include <pthread.h>
 #include <errno.h>
-
+int Nthreads = 2;
 float result = 0;
 
 //global float variable for the mapped file
@@ -20,7 +20,7 @@ void * start_routine(void *id){  /* main func of a thread */
 
     int i=0;
     while(map[i] != 0){
-        printf("%f\n %0.3f\n",map[i], *myid);
+        //printf("%f\n %0.3f\n",map[i], *myid);
         result+=map[i];
         i++;
     }
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
     }
 
     FILESIZE = lseek(file,0,SEEK_END);
-    NUMOBJ = FILESIZE / 4;
+    NUMOBJ = FILESIZE / sizeof(float);
     map = mmap(0, FILESIZE, PROT_READ|PROT_WRITE,MAP_SHARED,file,0);
 
     if(map == MAP_FAILED){
