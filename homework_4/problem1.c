@@ -7,7 +7,8 @@
 #include <fcntl.h>
 #include <pthread.h>
 #include <errno.h>
-int Nthreads = 2;
+
+float result = 0;
 
 //global float variable for the mapped file
 float *map;
@@ -19,7 +20,8 @@ void * start_routine(void *id){  /* main func of a thread */
 
     int i=0;
     while(map[i] != 0){
-        printf("%f\n %d\n",map[i], *myid);
+        printf("%f\n %0.3f\n",map[i], *myid);
+        result+=map[i];
         i++;
     }
 
@@ -61,12 +63,14 @@ int main(int argc, char *argv[]){
     }
 
 
-    pthread_t thread[10]; int ret, index[10];
-    for(int i = 0; i < 10; i++){
-        ret = pthread_create(thread+i,NULL,start_routine,&(index[10]));
+    pthread_t thread[NUMOBJ]; int ret, index[NUMOBJ];
+    for(int i = 0; i < NUMOBJ; i++){
+        ret = pthread_create(thread+i,NULL,start_routine,&(index[NUMOBJ]));
         if (ret!=0) { errno = ret; perror("pthread_create"); return -1;}
     }
-    for (int i=0;i<10;i++) pthread_join(thread[i], NULL);
+    for (int i=0;i<NUMOBJ;i++) pthread_join(thread[i], NULL);
+
+    printf("The sum is %0.3f\n", result);
     /*
     int i=0;
     while(map[i] != 0){
